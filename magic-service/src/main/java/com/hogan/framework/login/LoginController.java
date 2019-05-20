@@ -21,7 +21,7 @@ import java.util.Map;
  * Date:2017/8/11 14:38
  */
 @RestController
-@RequestMapping(value = "/ep/api")
+@RequestMapping(value = "/magic/api")
 public class LoginController {
 
     private static Logger log = LoggerFactory.getLogger(LoginController.class);

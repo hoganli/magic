@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * Date:2018/07/18
  */
 @Controller
-@RequestMapping(value = "/ep/api")
+@RequestMapping(value = "/magic/api")
 public class PermissionController {
 
 	private static Logger log = LoggerFactory.getLogger(PermissionController.class);

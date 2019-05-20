@@ -18,7 +18,7 @@ import java.util.List;
  * Date:2018/5/10 8:39
  */
 @Controller
-@RequestMapping(value = "/ep/api")
+@RequestMapping(value = "/magic/api")
 public class RolePermissionController {
 
     private static Logger log = LoggerFactory.getLogger(RolePermissionController.class);

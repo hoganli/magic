@@ -30,7 +30,7 @@ import java.util.Map;
  * Date:2018/07/18
  */
 @Controller
-@RequestMapping(value = "/ep/api")
+@RequestMapping(value = "/magic/api")
 public class LogController {
 
     private static Logger log = LoggerFactory.getLogger(LogController.class);

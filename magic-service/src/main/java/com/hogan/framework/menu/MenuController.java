@@ -18,7 +18,7 @@ import java.util.List;
  * Date:2018/07/18
  */
 @Controller
-@RequestMapping(value = "/ep/api")
+@RequestMapping(value = "/magic/api")
 public class MenuController {
 
     private static Logger log = LoggerFactory.getLogger(MenuController.class);

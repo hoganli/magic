@@ -1,5 +1,5 @@
 // 配置API接口地址（已通过/config/index.js配置proxyTable实现）
-var root = 'http://127.0.0.1/ep/api'
+var root = 'http://127.0.0.1/magic/api'
 
 // 引用组件
 import router from '../router'
