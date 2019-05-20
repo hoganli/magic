@@ -1,0 +1,151 @@
+/*************************
+ * Variables
+ **************************/
+
+@base-border: 1px solid #E0E0E0;
+@text-color: #5c5c5c;
+//@base-color: #04be02;
+//@base-color: #815C4C;
+//@base-color: #F57F23;
+@base-color: #bc9b69;
+@base-color-bs-black: #551E09;
+
+// 统一的form+table+table footer样式
+.main-form {
+  background-color: #ececec !important;
+  //margin-top: 15px;
+  //padding-top: 22px;
+  padding-left: 5px !important;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+
+  .el-form-item{
+    margin-bottom: 0px;
+  }
+}
+
+.main-table {
+  background-color: #ececec;
+  margin-top: 10px;
+  padding: 10px 5px !important;
+
+  .img-pre {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: inline;
+    vertical-align: top;
+
+    .img-pre-li {
+      width: 100%;
+      height: 100%;
+      margin: 0px;
+      display: list-item;
+      line-height: 0;
+      overflow: hidden;
+      background-color: #fff;
+      border: 1px solid #c0ccda;
+      border-radius: 6px;
+      box-sizing: border-box;
+      position: relative;
+
+      .img-pre-li-actions {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        left: 0;
+        top: 0;
+        cursor: default;
+        text-align: center;
+        color: #fff;
+        opacity: 0;
+        font-size: 20px;
+        background-color: rgba(0,0,0,.5);
+        -webkit-transition: opacity .3s;
+        transition: opacity .3s;
+        span {
+          text-align: center;
+          color: #fff;
+          font-size: 20px;
+          cursor: pointer;
+        }
+        &::after {
+          display: inline-block;
+          content: "";
+          height: 100%;
+          vertical-align: middle;
+        }
+        &:hover {
+          opacity: 1;
+        }
+      }
+    }
+  }
+}
+
+.table-footer {
+  display: flex;
+  box-sizing: content-box;
+  padding-top: 10px;
+  padding-bottom: 0px;
+  margin-bottom: 0px;
+  justify-content: space-between;
+}
+
+// 修改element ui文件上传缩略图效果
+.el-upload-list--picture-card {
+  .el-upload-list__item {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+  }
+  .el-upload-list__item-thumbnail {
+    width: auto !important;
+    height: auto !important;
+    max-width: 90% !important;
+    max-height: 90% !important;
+  }
+}
+
+// 修改element ui默认的文本框字体
+.el-textarea__inner {
+  font-family: 微软雅黑;
+}
+
+//  修改element ui文件上传预览图效果（该对话框与app平级，是body的子元素）
+body {
+  .upload-img-preview {
+
+    .el-dialog__body {
+      height: 400px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      img {
+        width: auto;
+        height: auto;
+        max-width: 100%;
+        max-height: 100%;
+      }
+    }
+  }
+
+  .el-popover {
+    font-size: 12px !important;
+  }
+}
+
+.previewImage {
+   border-radius: 13px;
+   border: 1px dashed #CCC;
+}
+
+.pop-viewImage {
+  border-radius: 13px;
+  border: 1px dashed #CCC;
+  width: 345px;
+  height: 218px;
+  margin-bottom: 20px;
+}

@@ -1,0 +1,53 @@
+/*************************
+ * page role style
+ **************************/
+@import "../_common.less";
+
+.role-page {
+  .checkbox-group-div {
+    text-align: left;
+
+  }
+
+  .grant-dialog {
+    .tips {
+      color: #409EFF;
+      text-align: left;
+      margin-bottom: 15px;
+    }
+
+    .el-dialog {
+      height: 100%;
+      position: absolute;
+      top: 79%;
+      left: 50%;
+      margin: 0 !important;
+      transform: translate(-50%, -79%);
+      max-height: ~'calc(100% - 30px)';
+      max-width: ~'calc(100% - 30px)';
+      display: flex;
+      flex-direction: column;
+      .el-dialog__body {
+        overflow: hidden;
+        height: 100%;
+        .dialog-scroll {
+          height: 100%;
+          .el-scrollbar__wrap {
+            overflow-x: hidden;
+            .el-scrollbar__view {
+              width: 98%;
+            }
+          }
+          .el-scrollbar__bar.is-horizontal > div {
+            width: 0;
+          }
+        }
+      }
+    }
+  }
+
+  .inline-block {
+    display: inline-block;
+  }
+
+}

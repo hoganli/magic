@@ -1,0 +1,56 @@
+/*************************
+ * page mail style
+ *************************/
+@import "../_common.less";
+
+.page-fileMonitor {
+
+  .el-dialog__wrapper {
+    .el-dialog {
+      //width: 1200px;
+      height: 100%;
+      position: absolute;
+      top: 70%;
+      left: 50%;
+      margin: 0 !important;
+      transform: translate(-50%, -70%);
+      max-height: ~'calc(100% - 30px)';
+      max-width: ~'calc(100% - 30px)';
+      display: flex;
+      flex-direction: column;
+      .el-dialog__body {
+        overflow: hidden;
+        height: 100%;
+        .dialog-scroll {
+          height: 100%;
+          .el-scrollbar__wrap {
+            overflow-x: hidden;
+            .el-scrollbar__view {
+              width: 98%;
+            }
+          }
+          .el-scrollbar__bar.is-horizontal > div {
+            width: 0;
+          }
+        }
+      }
+    }
+  }
+
+  .table-footer {
+    display: flex;
+    box-sizing: content-box;
+    padding-top: 10px;
+    padding-bottom: 0px;
+    margin-bottom: 0px;
+    justify-content: flex-end;
+  }
+
+  .preview-dialog {
+    .preview-content {
+      text-align: left;
+      -moz-user-select: none
+    }
+  }
+
+}
