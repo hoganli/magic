@@ -38,7 +38,7 @@ public class Application {
      */
     @RequestMapping(value = "/hello")
     public String hello() {
-        String s = "<H1>Hello，欢迎使用金邦达邮寄服务平台！</H1>";
+        String s = "<H1>Hello，欢迎你！</H1>";
         String s1 = "<H2>通过env对象获取配置信息：" + env.getProperty("server.port") + "</H2>";
         String s2 = "<H2>通过@Value对象获取配置信息：" + port + "</H2>";
         return s + s1 + s2;
