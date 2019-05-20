@@ -37,18 +37,15 @@ public class UserController {
 	private UserService userService;
 
     @Autowired
-    private LdapService ldapService;
-
-    @Autowired
     private UserRoleService userRoleService;
 
     /**
      * 更新User
      */
-    @RequestMapping(value = "/user", method = RequestMethod.PUT)
+    @RequestMapping(value = "/addOrUpdateUser", method = RequestMethod.PUT)
     @RequiresPermissions("user:update")
     @ResponseBody
-    public ReturnVO updateUser(@RequestBody User user) {
+    public ReturnVO addOrUpdateUser(@RequestBody User user) {
 
         ReturnVO vo = new ReturnVO();
 
@@ -56,10 +53,11 @@ public class UserController {
             User currentUser = (User) SecurityUtils.getSubject().getSession().getAttribute("user");
             user.setUpdateDate(DateUtil.getCurrentTimeStamp().toString());
             user.setUpdateBy(currentUser.getId());
+            List<String> roleIds = user.getRoleIds();
             // 更新用户
-            userService.update(user);
+            user = userService.addOrUpdateUser(user);
             // 更新用户与角色关联关系
-            userRoleService.updateUserRole(user.getId(), user.getRoleIds());
+            userRoleService.updateUserRole(user.getId(), roleIds);
         } catch (Exception e) {
             log.error(e.getMessage(), e);
             vo.setSuccess(false);
@@ -176,72 +174,6 @@ public class UserController {
                 vo.setSuccess(false);
                 vo.setMessage(FrameworkConstants.ERROR_MSG_RECORD_NOT_EXIST);
             }
-        } catch (Exception e) {
-            log.error(e.getMessage(), e);
-            vo.setMessage(e.getMessage());
-        }
-
-        return vo;
-    }
-
-    /**
-     * 查询域用户列表
-     */
-    @RequestMapping(value = "/ldapUsers", method = RequestMethod.GET)
-    @RequiresPermissions("user:sync")
-    @ResponseBody
-    public ReturnVO findLdap(@RequestParam Map<String, Object> paramMap) {
-
-        ReturnVO vo = new ReturnVO();
-
-        try {
-            String name = (String) paramMap.get("name");
-            if (StringUtils.isBlank(name)) {
-                throw new IllegalArgumentException("name不能为空!");
-            }
-            List<User> dataList = ldapService.getLdapUserList(name);
-            vo.setDataList(dataList);
-        } catch (Exception e) {
-            log.error(e.getMessage(), e);
-            vo.setMessage(e.getMessage());
-        }
-
-        return vo;
-    }
-
-    /**
-     * 同步域用户
-     */
-    @RequestMapping(value = "/syncLdapUser", method = RequestMethod.POST)
-    @RequiresPermissions("user:sync")
-    @ResponseBody
-    public ReturnVO addUser(@RequestBody User user) {
-
-        ReturnVO vo = new ReturnVO();
-
-        try {
-            userService.syncLdapUser(user);
-        } catch (Exception e) {
-            log.error(e.getMessage(), e);
-            vo.setMessage(e.getMessage());
-        }
-
-        return vo;
-    }
-
-    /**
-     * 根据account判断域用户是否已经同步到本地
-     */
-    @RequestMapping(value = "/isUserExist", method = RequestMethod.GET)
-    @RequiresPermissions("user:sync")
-    @ResponseBody
-    public ReturnVO getUserByAccount(@RequestParam String account) {
-
-        ReturnVO vo = new ReturnVO();
-
-        try {
-            User user = userService.findByAccount(account);
-            vo.setData(user);
         } catch (Exception e) {
             log.error(e.getMessage(), e);
             vo.setMessage(e.getMessage());

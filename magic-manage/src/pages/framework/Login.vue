@@ -1,7 +1,7 @@
 <template>
   <el-container class="page-login">
 
-    <el-main class="login-container" :style="{height:globalFullHeight-240 + 'px'}">
+    <el-main class="login-container" :style="{height:globalFullHeight-200 + 'px'}">
       <el-form :rules="rules"
                :model="loginUser"
                ref="loginUser"
@@ -9,7 +9,7 @@
                label-position="left"
                label-width="0px"
                v-loading="loading">
-        <h3 class="login-title">金邦达电子运单系统</h3>
+        <h3 class="login-title">后台管理系统</h3>
         <el-form-item prop="account">
           <el-input type="text" v-model="loginUser.account" auto-complete="off" placeholder="账号"></el-input>
         </el-form-item>
@@ -23,7 +23,6 @@
           </el-radio-group>
         </el-form-item>-->
         <!--<el-checkbox class="login-remember" v-model="checked" label-position="left">记住密码</el-checkbox>-->
-        <span class="login-tip"><i class="fa fa-info-circle fa-lg"></i>&nbsp;&nbsp;提示：非管理员请直接使用域账号进行登录</span>
         <!--<span class="login-tip"><i class="fa fa-info-circle fa-lg"></i>&nbsp;&nbsp;提示：普通用户请使用（域用户名+本地密码）登录</span>-->
         <el-form-item>
           <el-button class="login-button" type="primary" :loading="logining" @click.native.prevent="login">立即登录</el-button>
@@ -32,8 +31,8 @@
     </el-main>
 
     <el-footer class="login-footer" height="80px">
-      <p>All rights reserved copyright © 1998-{{year}}</p>
-      <p>金邦达有限公司</p>
+      <p>All rights reserved copyright © 2018-{{year}}</p>
+      <p>珠海市幻魅魔法美容会所</p>
     </el-footer>
 
     <upd-pwd-dialog ref="updpwddialog"
@@ -81,8 +80,9 @@
 
         // 全部用户使用本地认证
         var password = this.$cryptoJs.SHA256(this.loginUser.password).toString();
+        this.loginRequest(account, password)
         // 校验然后登录
-        this.loginCheck(account, password);
+//        this.loginCheck(account, password);
 
         /*if ('admin' === account || 'auditor' === account) {
           // 本地认证：sha256摘要
@@ -116,30 +116,30 @@
 
       },
 
-      loginCheck(account, password) {
-        this.$ajax.post(
-          '/loginCheck',
-          {
-            account: account,
-            password: password
-          },
-          vo => {
-            this.logining = false
-            if (vo.success) {
-              if (vo.data === true) {
-                this.$message.error(vo.message)
-                this.$refs.updpwddialog.showUpdPwdDialog()
-              } else {
-                this.loginRequest(account, password)
-              }
-            }
-          },
-          vo => {
-            this.logining = false
-            this.$message.error(vo.message)
-          }
-        );
-      },
+//      loginCheck(account, password) {
+//        this.$ajax.post(
+//          '/loginCheck',
+//          {
+//            account: account,
+//            password: password
+//          },
+//          vo => {
+//            this.logining = false
+//            if (vo.success) {
+//              if (vo.data === true) {
+//                this.$message.error(vo.message)
+//                this.$refs.updpwddialog.showUpdPwdDialog()
+//              } else {
+//                this.loginRequest(account, password)
+//              }
+//            }
+//          },
+//          vo => {
+//            this.logining = false
+//            this.$message.error(vo.message)
+//          }
+//        );
+//      },
 
       loginRequest(account, password) {
         this.$ajax.post(

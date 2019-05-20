@@ -246,4 +246,27 @@ public class UserService extends BaseServiceImpl<User, String> {
     public List<User> findByAccountNotIn(List<String> accounts) {
         return userDao.findByAccountNotIn(accounts);
     }
+
+    public User addOrUpdateUser(User user) throws Exception {
+        User dbUser = userDao.findByAccount(user.getAccount());
+        if(dbUser == null) {
+            dbUser = new User();
+            dbUser.setAccount(user.getAccount());
+            dbUser.setEmail(user.getEmail());
+            dbUser.setUserName(user.getUserName());
+            dbUser.setGender(user.getGender());
+            dbUser.setPosition(user.getPosition());
+            dbUser.setMobilePhone(user.getMobilePhone());
+            dbUser.setWorkCode(user.getWorkCode());
+            dbUser.setBirthday(user.getBirthday());
+            dbUser.setRemark(user.getRemark());
+            dbUser.setUnitId("");
+            dbUser.setState(user.getState());
+            dbUser.setRoleIds(user.getRoleIds());
+            dbUser.setPassword(DigestUtil.SHA256ToHex(user.getAccount() + "_" + initPassword));
+            return save(dbUser);
+        } else {
+            return update(user);
+        }
+    }
 }

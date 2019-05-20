@@ -3,7 +3,7 @@ import Router from 'vue-router'
 
 import Login from '@/pages/framework/Login'
 import Home from '@/pages/framework/Home'
-import Dashboard from '@/pages/DashboardEp'
+import Dashboard from '@/pages/Dashboard'
 
 import User from '@/pages/framework/User'
 import Role from '@/pages/framework/Role'

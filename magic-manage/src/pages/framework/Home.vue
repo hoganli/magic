@@ -2,16 +2,16 @@
   <el-container class="page-home" v-loading="loading">
     <!--header部分-->
     <el-header class="home-header">
-      <div class="home-title" v-if="!isCollapse" style="width:200px">金邦达邮寄服务平台</div>
+      <div class="home-title" v-if="!isCollapse" style="width:200px">后台管理系统</div>
       <div class="home-title" v-else="isCollapse" style="width:44px">
         <el-popover
           placement="top-start"
-          title="金邦达邮寄服务平台"
+          title="后台管理系统"
           width="200"
           trigger="hover">
           <div slot="" class="popover-content">
             <span>版本：1.0.0</span><br>
-            <span>Powered By 发卡服务解决方案部</span><br>
+            <span>Powered By Hogan</span><br>
           </div>
           <span slot="reference"><i class="fa fa-th"></i></span>
         </el-popover>

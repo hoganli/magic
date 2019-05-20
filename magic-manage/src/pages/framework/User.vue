@@ -10,7 +10,7 @@
           <el-button type="primary" icon="el-icon-search" v-if="hasPerm('user:list')" @click="getUserList">查询</el-button>
         </el-form-item>
         <el-form-item>
-          <el-button type="success" icon="el-icon-refresh" v-if="hasPerm('user:sync')" @click="showSyncDialog">同步域用户</el-button>
+          <el-button type="success" icon="el-icon-refresh" v-if="hasPerm('user:sync')" @click="showAddDialog">添加用户</el-button>
         </el-form-item>
       </el-form>
     </el-header>
@@ -69,43 +69,7 @@
       </div>
     </el-main>
 
-    <!-- 域用户同步窗口 -->
-    <el-dialog
-      title="查询并同步域用户"
-      width="60%"
-      :visible.sync="isShowSyncDialog"
-      :close-on-click-modal="false"
-      class="sync-dialog">
-      <el-form :inline="true" :model="ldapForm" class="demo-form-inline">
-        <el-form-item>
-          <el-input style="width: 300px" v-model="ldapForm.keytext" placeholder="请输入用户姓名/账号/邮箱" clearable></el-input>
-        </el-form-item>
-        <el-form-item>
-          <el-button type="primary" v-if="hasPerm('user:sync')" @click="getLdapUserList">查询</el-button>
-        </el-form-item>
-      </el-form>
 
-      <el-table ref="multipleTable"
-                :data="ldapUserList"
-                tooltip-effect="dark"
-                style="width: 100%;overflow-x: hidden; overflow-y: hidden;"
-                @selection-change=""
-                v-loading="isLdapLoading">
-        <el-table-column label="用户姓名" prop="userName" width="100" align="left"></el-table-column>
-        <el-table-column label="用户账号" prop="account" width="150" align="left"></el-table-column>
-        <el-table-column label="邮箱" prop="email" width="250" align="left"></el-table-column>
-        <el-table-column label="部门" prop="remark" width="150" align="left"></el-table-column>
-        <el-table-column label="操作" align="center">
-          <template slot-scope="scope">
-            <el-button type="success" size="mini" v-if="hasPerm('user:sync')" @click="syncLdapUser(scope.$index)">同步</el-button>
-          </template>
-        </el-table-column>
-      </el-table>
-
-      <span slot="footer" class="dialog-footer">
-        <el-button @click="isShowSyncDialog = false">关 闭</el-button>
-      </span>
-    </el-dialog>
 
     <!-- 添加窗口 -->
     <el-dialog
@@ -122,7 +86,7 @@
                label-width="100px">
         <el-row>
           <el-col :span="12">
-            <el-form-item label="内部账号" prop="account">
+            <el-form-item label="登录账号" prop="account">
               <el-input v-model="userForm.account"></el-input>
             </el-form-item>
           </el-col>
@@ -195,8 +159,8 @@
 
         <el-row>
           <el-col :span="12">
-            <el-form-item label="办公电话" prop="officePhone">
-              <el-input v-model="userForm.officePhone"></el-input>
+            <el-form-item label="手机号码" prop="mobilePhone">
+              <el-input v-model="userForm.mobilePhone"></el-input>
             </el-form-item>
           </el-col>
           <el-col :span="12">
@@ -220,7 +184,7 @@
 
       <div slot="footer" class="dialog-footer">
         <el-button @click="closeEditDialog()">取 消</el-button>
-        <el-button type="primary" :loading="isSaving" @click="updateUser">确 定</el-button>
+        <el-button type="primary" :loading="isSaving" @click="addOrUpdateUser">确 定</el-button>
       </div>
     </el-dialog>
 
@@ -244,7 +208,7 @@
         selItems: [],             // 选中行记录
         isLoading: false,         // 数据加载等待动画
         isLdapLoading: false,     // 同步框的域用户列表加载等待动画
-        isShowSyncDialog: false,  // 是否显示同步框
+        isshowEditDialog: false,  // 是否显示同步框
         isShowEditDialog: false,  // 是否显示编辑框
         isSaving: false,          // 数据提交等待
         gIndex: 0,
@@ -272,12 +236,12 @@
           roleIds: []      // 用户的角色Ids
         },
         rules: {
-          officePhone: [
-            {required: true, message: '请输入办公电话', trigger: 'blur'}
+          mobilePhone: [
+            {required: true, message: '请输入手机号码', trigger: 'blur'}
           ],
-        },
-        ldapForm: {
-            keytext: '',
+          account: [
+            {required: true, message: '请输入登录账号', trigger: 'blur'}
+          ]
         },
         userList: [],
         ldapUserList:[],
@@ -318,81 +282,18 @@
       },
 
       // 显示同步窗口
-      showSyncDialog() {
-        this.ldapForm.keytext = ''
-        this.isShowSyncDialog = true
+      showAddDialog() {
+        this.isShowEditDialog = true
+        for (var field in this.userForm) {
+          this.userForm[field] = ''
+        }
       },
 
-      // 查询域用户
-      getLdapUserList() {
-        this.isLdapLoading = true
-        this.$ajax.get(
-          '/ldapUsers',
-          {
-            name: this.ldapForm.keytext
-          },
-          vo => {
-            this.isLdapLoading = false
-            this.ldapUserList = vo.dataList
-          },
-          vo => {
-            this.isLdapLoading = false;
-          }
-        )
-      },
 
-      // 同步域用户
-      syncLdapUser(index) {
-        let ldapUser = this.ldapUserList[index]
-        this.$ajax.get(
-          '/isUserExist',
-          {
-              account: ldapUser.account
-          },
-          vo => {
-            if (vo.data) {
-              this.$confirm('账户[' + ldapUser.account + ']已存在，是否继续同步?', '提示', {
-                confirmButtonText: '确定',
-                showCancelButton: false,
-                type: 'warning'
-              }).then(() => {
-                this.realSync(ldapUser)
-              }).catch(() => {
-                this.$message.info({center: true, message: '取消操作'})
-              });
-            } else {
-              this.realSync(ldapUser)
-            }
-          },
-          vo => {
-            this.$message.error('操作失败，请重试！')
-          }
-        )
-      },
-
-      // 同步
-      realSync(ldapUser) {
-        this.$ajax.post(
-          '/syncLdapUser',
-          ldapUser,
-          vo => {
-            this.$message.success('同步成功！');
-            this.ldapUserList = []
-            this.isShowSyncDialog = false
-            this.getUserList()
-          },
-          vo => {
-            this.$message.error('操作失败，请重试！')
-          }
-        )
-      },
 
       // 显示编辑窗口
       showEditDialog(row) {
         this.userForm = row
-//        for (var field in this.userForm) {
-//          this.userForm[field] = row[field]
-//        }
         this.isShowEditDialog = true
       },
 
@@ -405,20 +306,22 @@
       },
 
       // 更新用户
-      updateUser() {
+      addOrUpdateUser() {
+        this.isSaving = true
         this.$refs['userForm'].validate((valid) => {
           if (valid) {
             this.$ajax.put(
-              '/user',
+              '/addOrUpdateUser',
               this.userForm,
               vo => {
-                this.$message.success('保存成功！');
+                this.$message.success('保存成功！')
+                this.isSaving = false
                 this.closeEditDialog()
                 this.getUserList()
               },
               vo => {
-                this.isLoading = false;
-                this.$message.error('操作失败，请重试！');
+                this.isSaving = false
+                this.$message.error('操作失败，请重试！')
               }
             )
           } else {
