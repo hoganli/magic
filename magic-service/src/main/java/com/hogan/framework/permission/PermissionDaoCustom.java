@@ -9,7 +9,7 @@ import java.util.Map;
 /**
  * ClassName:PermissionDaoCustom
  * Description:PermissionDaoCustom
- * User:dada
+ * User:hogan.li
  * Date:2018/07/18
  */
 public interface PermissionDaoCustom {

@@ -8,7 +8,7 @@ import java.io.Serializable;
 /**
  * ClassName:BaseEntity
  * Description:BaseEntity
- * User:dada
+ * User:hogan.li
  * Date:2017/7/27 21:41
  */
 @MappedSuperclass

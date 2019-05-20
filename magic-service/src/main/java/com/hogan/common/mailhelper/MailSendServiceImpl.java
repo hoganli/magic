@@ -37,7 +37,7 @@ import java.util.List;
 /**
  * ClassName:MailSendServiceImpl
  * Description:邮件发送实现类（负责发送邮件）
- * User:dada
+ * User:hogan.li
  * Date:2018/11/21 17:41
  */
 @Service

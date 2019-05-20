@@ -8,7 +8,7 @@ import java.io.InputStream;
 /**
  * ClassName:WrapperServletInputStream
  * Description:请求流对象
- * User:dada
+ * User:hogan.li
  * Date:2018/5/16 11:36
  */
 public class WrapperServletInputStream extends ServletInputStream {

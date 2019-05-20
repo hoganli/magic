@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 /**
  * ClassName:LoginService
  * Description:LoginService
- * User:dada
+ * User:hogan.li
  * Date:2018/07/18
  */
 @Service

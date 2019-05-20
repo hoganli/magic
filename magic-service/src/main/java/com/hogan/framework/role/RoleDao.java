@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * ClassName:RoleDao
  * Description:RoleDao
- * User:dada
+ * User:hogan.li
  * Date:2018/07/18
  */
 public interface RoleDao extends BaseDao<Role, String>, RoleDaoCustom {

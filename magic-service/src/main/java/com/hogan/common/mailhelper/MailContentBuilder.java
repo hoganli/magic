@@ -8,7 +8,7 @@ import org.thymeleaf.context.Context;
 /**
  * ClassName:MailContentBuilder
  * Description:负责构建邮件模板
- * User:dada
+ * User:hogan.li
  * Date:2018/11/21 18:23
  */
 @Component

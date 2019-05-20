@@ -9,7 +9,7 @@ import java.util.Map;
 /**
  * ClassName:LogDaoCustom
  * Description:LogDaoCustom
- * User:dada
+ * User:hogan.li
  * Date:2018/07/18
  */
 public interface LogDaoCustom {

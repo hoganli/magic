@@ -11,7 +11,7 @@ import javax.persistence.Table;
 /**
  * ClassName:Unit
  * Description:Unit
- * User:dada
+ * User:hogan.li
  * Date:2018/07/18
  */
 @Entity

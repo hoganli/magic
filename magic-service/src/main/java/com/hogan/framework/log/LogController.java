@@ -26,7 +26,7 @@ import java.util.Map;
 /**
  * ClassName:LogController
  * Description:LogController
- * User:dada
+ * User:hogan.li
  * Date:2018/07/18
  */
 @Controller

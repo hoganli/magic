@@ -11,7 +11,7 @@ import java.util.List;
 /**
  * ClassName:UserDao
  * Description:UserDao
- * User:dada
+ * User:hogan.li
  * Date:2018/07/18
  */
 public interface UserDao extends BaseDao<User, String>, UserDaoCustom {

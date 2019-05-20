@@ -8,7 +8,7 @@ import java.io.IOException;
 /**
  * ClassName:EncodeUtil
  * Description:编解码工具类
- * User:dada
+ * User:hogan.li
  * Date:2017/8/30 17:08
  */
 public class EncodeUtil {

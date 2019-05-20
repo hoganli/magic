@@ -19,7 +19,7 @@ import java.util.List;
 /**
  * ClassName:LdapService
  * Description:LdapService
- * User:dada
+ * User:hogan.li
  * Date:2018/04/28
  */
 @Service

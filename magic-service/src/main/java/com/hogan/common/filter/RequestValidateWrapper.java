@@ -15,7 +15,7 @@ import java.util.Map;
 /**
  * ClassName:RequestValidateWrapper
  * Description:请求包装类，目的是为了获取请求参数
- * User:dada
+ * User:hogan.li
  * Date:2018/5/15 17:34
  */
 public class RequestValidateWrapper extends HttpServletRequestWrapper {

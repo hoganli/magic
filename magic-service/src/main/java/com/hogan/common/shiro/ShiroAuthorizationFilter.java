@@ -17,7 +17,7 @@ import java.io.PrintWriter;
 /**
  * ClassName:ShiroAuthorizationFilter
  * Description: 自定义权限认证过滤器（该类无效，改由通过全局异常进行处理）
- * User:dada
+ * User:hogan.li
  * Date:2018/5/11 11:32
  */
 public class ShiroAuthorizationFilter extends PermissionsAuthorizationFilter {

@@ -12,7 +12,7 @@ import java.io.Serializable;
 /**
  * ClassName:BaseDaoFactory
  * Description:工厂通过两个方法来确定具体的实现类，也就是Spring Data Jpa实例化接口的时候需要创建的实现类
- * User:dada
+ * User:hogan.li
  * Date:2017/7/27 21:18
  */
 public class BaseDaoFactory<S, ID extends Serializable> extends JpaRepositoryFactory {

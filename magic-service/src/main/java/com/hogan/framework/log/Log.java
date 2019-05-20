@@ -10,7 +10,7 @@ import javax.persistence.Table;
 /**
  * ClassName:Log
  * Description:Log
- * User:dada
+ * User:hogan.li
  * Date:2018/07/18
  */
 @Entity

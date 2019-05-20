@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * ClassName:BaseRequestInterceptor
  * Description:统一的请求预处理拦截器
- * User:dada
+ * User:hogan.li
  * Date:2018/5/14 17:19
  */
 public class BaseRequestInterceptor implements HandlerInterceptor {

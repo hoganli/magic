@@ -27,7 +27,7 @@ import java.util.Map;
 /**
  * ClassName:LogAspect
  * Description:LogAspect
- * User:dada
+ * User:hogan.li
  * Date:2018/07/18
  */
 @Aspect

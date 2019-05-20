@@ -9,7 +9,7 @@ import javax.persistence.Table;
 /**
  * ClassName:RolePermission
  * Description:RolePermission
- * User:dada
+ * User:hogan.li
  * Date:2018/07/18
  */
 @Entity

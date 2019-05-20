@@ -4,7 +4,7 @@ import java.awt.*;
 
 /**
 * @Description: 二维码LOGO配置类
-* @author:      dada
+* @author:      hogan.li
 * @date:        2016年9月24日 下午4:14:13
 */
 public class MatrixToLogoImageConfig {

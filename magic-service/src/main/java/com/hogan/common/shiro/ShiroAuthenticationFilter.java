@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * ClassName:ShiroAuthenticationFilter
  * Description: 自定义登录认证过滤器
- * User:dada
+ * User:hogan.li
  * Date:2018/5/11 11:32
  */
 

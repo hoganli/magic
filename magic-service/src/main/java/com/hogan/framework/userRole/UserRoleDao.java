@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * ClassName:UserRoleDao
  * Description:UserRoleDao
- * User:dada
+ * User:hogan.li
  * Date:2018/07/18
  */
 public interface UserRoleDao extends BaseDao<UserRole, String> {

@@ -7,7 +7,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 /**
  * ClassName:BaseWebMvcConfiguer
  * Description: 自定义拦截器注册
- * User:dada
+ * User:hogan.li
  * Date:2018/5/14 17:46
  */
 @Configuration

@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * ClassName:RolePermissionDao
  * Description:RolePermissionDao
- * User:dada
+ * User:hogan.li
  * Date:2018/07/18
  */
 public interface RolePermissionDao extends BaseDao<RolePermission, String> {

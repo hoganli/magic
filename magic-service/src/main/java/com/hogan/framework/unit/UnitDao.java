@@ -7,7 +7,7 @@ import com.hogan.common.base.BaseDao;
 /**
  * ClassName:UnitDao
  * Description:UnitDao
- * User:dada
+ * User:hogan.li
  * Date:2018/07/18
  */
 public interface UnitDao extends BaseDao<Unit, String>, UnitDaoCustom {

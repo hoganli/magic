@@ -18,7 +18,7 @@ import java.util.Map;
 /**
  * ClassName:ShiroConfiguration
  * Description: ShiroConfiguration
- * User:dada
+ * User:hogan.li
  * Date:2018/5/11 11:32
  */
 @Configuration

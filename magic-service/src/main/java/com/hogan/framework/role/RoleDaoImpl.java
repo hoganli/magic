@@ -20,7 +20,7 @@ import java.util.Map;
 /**
  * ClassName:RoleDaoImpl
  * Description:RoleDaoImpl
- * User:dada
+ * User:hogan.li
  * Date:2018/07/18
  */
 public class RoleDaoImpl implements RoleDaoCustom {

@@ -11,7 +11,7 @@ import javax.crypto.spec.SecretKeySpec;
 /**
  * ClassName:DesUtil
  * Description:DES加解密工具类
- * User:dada
+ * User:hogan.li
  * Date:2017/8/30 13:56
  */
 public class DesUtil {

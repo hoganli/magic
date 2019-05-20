@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * ClassName:User
  * Description:User
- * User:dada
+ * User:hogan.li
  * Date:2018/07/18
  */
 @Entity

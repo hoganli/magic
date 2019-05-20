@@ -20,7 +20,7 @@ import java.util.Map;
 /**
  * ClassName:LogDaoImpl
  * Description:LogDaoImpl
- * User:dada
+ * User:hogan.li
  * Date:2018/07/18
  */
 public class LogDaoImpl implements LogDaoCustom {

@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * ClassName:SpringbootServiceApplication
  * Description:springboot main class
- * User:dada
+ * User:hogan.li
  * Date:2016/12/14-9:31
  */
 @RestController

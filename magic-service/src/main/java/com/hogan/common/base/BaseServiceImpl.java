@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * ClassName:BaseService
  * Description:BaseService实现类
- * User:dada
+ * User:hogan.li
  * Date:2019/1/30 12:22
  */
 public class BaseServiceImpl<T, ID> implements BaseService<T, ID> {

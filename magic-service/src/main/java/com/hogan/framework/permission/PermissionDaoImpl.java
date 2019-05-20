@@ -19,7 +19,7 @@ import java.util.Map;
 /**
  * ClassName:PermissionDaoImpl
  * Description:PermissionDaoImpl
- * User:dada
+ * User:hogan.li
  * Date:2018/07/18
  */
 public class PermissionDaoImpl implements PermissionDaoCustom {

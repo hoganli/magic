@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * ClassName:BaseDaoImpl
  * Description:BaseDAO实现类（jpa继承实现+base自定义实现）
- * User:dada
+ * User:hogan.li
  * Date:2017/7/27 21:41
  */
 public class BaseDaoImpl<T, ID> extends SimpleJpaRepository<T, ID> implements BaseDao<T, ID> {

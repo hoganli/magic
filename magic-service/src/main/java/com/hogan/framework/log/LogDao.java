@@ -7,7 +7,7 @@ import com.hogan.common.base.BaseDao;
 /**
  * ClassName:LogDao
  * Description:LogDao
- * User:dada
+ * User:hogan.li
  * Date:2018/07/18
  */
 public interface LogDao extends BaseDao<Log, String>, LogDaoCustom {

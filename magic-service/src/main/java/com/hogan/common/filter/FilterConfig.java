@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Configuration;
 /**
  * ClassName:FilterConfig
  * Description:注册自定义过滤器
- * User:dada
+ * User:hogan.li
  * Date:2018/5/15 11:43
  */
 @Configuration

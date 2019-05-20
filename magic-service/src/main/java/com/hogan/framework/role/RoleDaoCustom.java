@@ -9,7 +9,7 @@ import java.util.Map;
 /**
  * ClassName:RoleDaoCustom
  * Description:RoleDaoCustom
- * User:dada
+ * User:hogan.li
  * Date:2018/07/18
  */
 public interface RoleDaoCustom {

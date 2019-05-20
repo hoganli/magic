@@ -13,7 +13,7 @@ import javax.persistence.Transient;
 /**
  * ClassName:Permission
  * Description:Permission
- * User:dada
+ * User:hogan.li
  * Date:2018/07/18
  */
 @Entity

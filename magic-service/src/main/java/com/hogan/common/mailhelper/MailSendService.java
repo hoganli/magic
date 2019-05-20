@@ -5,7 +5,7 @@ import org.thymeleaf.context.Context;
 /**
  * ClassName:MailSendService
  * Description:邮件发送接口
- * User:dada
+ * User:hogan.li
  * Date:2018/11/21 17:40
  */
 public interface MailSendService {

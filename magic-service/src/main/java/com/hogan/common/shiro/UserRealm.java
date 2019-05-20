@@ -24,7 +24,7 @@ import java.util.Map;
 /**
  * ClassName:UserRealm
  * Description: UserRealm
- * User:dada
+ * User:hogan.li
  * Date:2018/5/11 11:32
  */
 public class UserRealm extends AuthorizingRealm {

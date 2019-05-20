@@ -20,7 +20,7 @@ import java.util.Map;
 /**
  * ClassName:UserDaoImpl
  * Description:UserDaoImpl
- * User:dada
+ * User:hogan.li
  * Date:2018/07/18
  */
 public class UserDaoImpl implements UserDaoCustom {

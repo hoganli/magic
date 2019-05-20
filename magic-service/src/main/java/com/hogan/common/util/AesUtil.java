@@ -9,7 +9,7 @@ import java.security.SecureRandom;
 /**
  * ClassName:AesUtil
  * Description:AES加解密工具类
- * User:dada
+ * User:hogan.li
  * Date:2017/8/03 12:00
  */
 public class AesUtil {
@@ -89,8 +89,8 @@ public class AesUtil {
     public static void main(String[] args) throws Exception {
 
         // AES加解密
-//        String source = "dada@006";
-        String source = "dada@000";
+//        String source = "hogan.li@006";
+        String source = "hogan.li@000";
 //        String secret = "1234567812345678";   // 标准密钥
         String secret = "min-chong.liao";       // 非标密钥
         byte[] aesEncryptToByte = AESEncryptToByte(source, secret);

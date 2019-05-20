@@ -15,7 +15,7 @@ import java.io.IOException;
 /**
  * ClassName:RequestValidateFilter
  * Description:请求参数校验过滤器
- * User:dada
+ * User:hogan.li
  * Date:2018/5/15 11:39
  */
 public class RequestValidateFilter implements Filter {

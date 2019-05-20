@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * ClassName:BaseService
  * Description:BaseService接口（定义公共的service方法）
- * User:dada
+ * User:hogan.li
  * Date:2017/2/23-17:46
  */
 public interface BaseService<T, ID> {

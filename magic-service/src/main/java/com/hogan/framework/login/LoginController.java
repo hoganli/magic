@@ -17,7 +17,7 @@ import java.util.Map;
 /**
  * ClassName:LoginController
  * Description:LoginController
- * User:dada
+ * User:hogan.li
  * Date:2017/8/11 14:38
  */
 @RestController

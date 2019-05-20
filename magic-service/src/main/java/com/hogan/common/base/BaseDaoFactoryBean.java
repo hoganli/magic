@@ -10,7 +10,7 @@ import java.io.Serializable;
 /**
  * ClassName:BaseDaoFactoryBean
  * Description:工厂bean用于创建工厂
- * User:dada
+ * User:hogan.li
  * Date:2017/7/27 21:26
  */
 public class BaseDaoFactoryBean<R extends JpaRepository<S, ID>, S, ID extends Serializable> extends JpaRepositoryFactoryBean<R, S, ID> {

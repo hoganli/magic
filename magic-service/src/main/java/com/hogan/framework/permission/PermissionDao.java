@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * ClassName:PermissionDao
  * Description:PermissionDao
- * User:dada
+ * User:hogan.li
  * Date:2018/07/18
  */
 public interface PermissionDao extends BaseDao<Permission, String>, PermissionDaoCustom {

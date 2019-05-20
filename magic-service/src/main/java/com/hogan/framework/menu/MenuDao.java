@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * ClassName:MenuDao
  * Description:MenuDao
- * User:dada
+ * User:hogan.li
  * Date:2018/07/18
  */
 public interface MenuDao extends BaseDao<Menu, String>, MenuDaoCustom {

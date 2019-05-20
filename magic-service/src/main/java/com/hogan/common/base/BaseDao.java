@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * ClassName:BaseDao
  * Description:BaseDao接口（jpa接口+base自定义接口）
- * User:dada
+ * User:hogan.li
  * Date:2017/2/23-17:46
  */
 @NoRepositoryBean

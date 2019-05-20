@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * ClassName:BaseExceptionHandler
  * Description:全局异常处理
- * User:dada
+ * User:hogan.li
  * Date:2018/5/14 15:24
  */
 @ControllerAdvice
