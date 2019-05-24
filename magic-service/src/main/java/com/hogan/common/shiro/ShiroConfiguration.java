@@ -56,6 +56,7 @@ public class ShiroConfiguration {
         filterChainDefinitionMap.put("/static/**", "anon");
         filterChainDefinitionMap.put("/magic/hello", "anon");
         filterChainDefinitionMap.put("/magic/api/login", "anon");
+        filterChainDefinitionMap.put("/magic/api/book", "anon");
         filterChainDefinitionMap.put("/magic/api/loginCheck", "anon");
         filterChainDefinitionMap.put("/magic/api/checkPassword", "anon");
         filterChainDefinitionMap.put("/magic/api/updatePassword", "anon");
