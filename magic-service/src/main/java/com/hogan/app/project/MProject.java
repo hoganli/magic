@@ -40,10 +40,31 @@ public class MProject extends BaseEntity {
     /**
 	 * used
 	 */
-	@Column(name = "used")
-	private Integer used;
-	
-	
+	@Column(name = "used", columnDefinition = "tinyint")
+	private Boolean used;
+
+	@Column(name = "period")
+	private Integer period;
+
+	@Column(name = "type")
+	private String type;
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	public Integer getPeriod() {
+		return period;
+	}
+
+	public void setPeriod(Integer period) {
+		this.period = period;
+	}
+
 	public String getProjectName() {
 		return projectName;
 	}
@@ -68,11 +89,11 @@ public class MProject extends BaseEntity {
 		this.disPrice = disPrice;
 	}
 	
-	public Integer getUsed() {
+	public Boolean getUsed() {
 		return used;
 	}
 
-	public void setUsed(Integer used) {
+	public void setUsed(Boolean used) {
 		this.used = used;
 	}
 	

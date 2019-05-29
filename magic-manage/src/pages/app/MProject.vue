@@ -33,18 +33,26 @@
                 size="small"
                 :height="globalTableHeight"
                 :maxHeight="globalTableHeight">
-        <el-table-column type="selection" width="50" align="center"></el-table-column>
+        <!--<el-table-column type="selection" width="50" align="center"></el-table-column>-->
         <el-table-column type="index" label="序号" fixed :index=this.gIndex+1 align="center"></el-table-column>
-        <el-table-column label="project_name" prop="projectName" align="left" header-align="center"></el-table-column>
-        <el-table-column label="price" prop="price" align="left" header-align="center"></el-table-column>
-        <el-table-column label="dis_price" prop="disPrice" align="left" header-align="center"></el-table-column>
-        <el-table-column label="used" prop="used" align="left" header-align="center"></el-table-column>
+        <el-table-column label="项目名称" prop="projectName" align="center" header-align="center"></el-table-column>
+        <el-table-column label="类型" prop="type" align="center" header-align="center"></el-table-column>
+        <el-table-column label="服务时长（分）" prop="period" align="center" header-align="center"></el-table-column>
+        <el-table-column label="价格" prop="price" align="center" header-align="center"></el-table-column>
+        <el-table-column label="优惠价" prop="disPrice" align="center" header-align="center"></el-table-column>
+        <el-table-column label="是否启用" prop="used" align="center" header-align="center">
+          <template slot-scope="scope">
+            <el-tag :type="scope.row.used === true ? 'success' : 'danger' ">
+              {{scope.row.used === true ? '是' : '否'}}
+            </el-tag>
+          </template>
+        </el-table-column>
         <el-table-column label="操作" width="120px" align="center" fixed="right">
           <template slot-scope="scope">
-            <el-tooltip content="编辑project" placement="top">
+            <el-tooltip content="编辑" placement="top">
               <el-button circle type="primary" size="mini" icon="el-icon-edit" v-if="hasPerm('mProject:update')" @click="showUpdate(scope.row)"></el-button>
             </el-tooltip>
-            <el-tooltip content="删除project" placement="top">
+            <el-tooltip content="删除" placement="top">
               <el-button circle type="danger" size="mini" icon="el-icon-delete" v-if="hasPerm('mProject:delete')" @click="deleteMProject(scope.row)"></el-button>
             </el-tooltip>
           </template>
@@ -81,17 +89,26 @@
                  label-position="right"
                  style="text-align: left"
                  label-width="130px">
-          <el-form-item label="project_name" prop="projectName" :rules="[{ required: false, message: '请输入project_name'}]">
+          <el-form-item label="项目名称" prop="projectName" :rules="[{ required: true, message: '请输入项目名称'}]">
           <el-input v-model="mProjectForm.projectName"></el-input>
           </el-form-item>
-          <el-form-item label="price" prop="price" :rules="[{ required: false, message: '请输入price'}]">
+          <el-form-item label="类型" prop="type" :rules="[{ required: true, message: '请选择类型'}]">
+            <el-select v-model="mProjectForm.type" placeholder="请选择">
+              <el-option label="面部" value="面部"></el-option>
+              <el-option label="身体" value="身体"></el-option>
+            </el-select>
+          </el-form-item>
+          <el-form-item label="服务时长（分）" prop="period" :rules="[{ required: true, message: '请输入服务时长'}]">
+            <el-input v-model="mProjectForm.period"></el-input>
+          </el-form-item>
+          <el-form-item label="价格" prop="price" :rules="[{ required: true, message: '请输入价格'}]">
           <el-input v-model="mProjectForm.price"></el-input>
           </el-form-item>
-          <el-form-item label="dis_price" prop="disPrice" :rules="[{ required: false, message: '请输入dis_price'}]">
+          <el-form-item label="优惠价" prop="disPrice">
           <el-input v-model="mProjectForm.disPrice"></el-input>
           </el-form-item>
-          <el-form-item label="used" prop="used" :rules="[{ required: false, message: '请输入used'}]">
-          <el-input v-model="mProjectForm.used"></el-input>
+          <el-form-item label="是否启用" prop="used">
+            <el-switch v-model="mProjectForm.used"></el-switch>
           </el-form-item>
         </el-form>
       </el-scrollbar>
@@ -115,6 +132,8 @@
         mProjectForm: {
 		    	id: '',
 		    	projectName: '',
+		    	type: '',
+		    	period: '',
 		    	price: '',
 		    	disPrice: '',
 		    	used: '',
@@ -175,7 +194,7 @@
       },
 
       showCreate() {
-        this.editDialogTitle = '新建project'
+        this.editDialogTitle = '新建项目'
         // 创建窗口还原Form副本
         this.mProjectForm = _mProjectForm
         this.clearMProjectForm()
@@ -183,10 +202,11 @@
         if (this.$refs['mProjectForm']) {
           this.$refs['mProjectForm'].clearValidate()
         }
+        this.mProjectForm.used = true
       },
 
       showUpdate(row) {
-        this.editDialogTitle = '更新project'
+        this.editDialogTitle = '更新项目'
 //        for (var fld in this.mProjectForm) {
 //          this.mProjectForm[fld] = row[fld]
 //        }

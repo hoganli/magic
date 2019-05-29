@@ -138,6 +138,22 @@ public class MProjectController {
 
         return vo;
     }
+
+    @RequestMapping(value = "/projects", method = RequestMethod.GET)
+    public ReturnVO findProjects() {
+
+        ReturnVO vo = new ReturnVO();
+
+        try {
+            vo.setData(mProjectService.findByUsed(true));
+        } catch (Exception e) {
+            log.error(e.getMessage(), e);
+            vo.setSuccess(false);
+            vo.setMessage(e.getMessage());
+        }
+
+        return vo;
+    }
     
     /**
      * 查询单个MProject对象

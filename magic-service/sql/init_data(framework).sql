@@ -15,6 +15,9 @@ insert into fw_menu values ('001002',      '001',    '用户管理',       'user
 insert into fw_menu values ('001003',      '001',    '角色管理',       'role',                   '0',      0, 'system', CURRENT_TIMESTAMP(3), '', '');
 -- insert into fw_menu values ('001004',      '001',    '权限管理',       'permission',             '0',      0, 'system', CURRENT_TIMESTAMP(3), '', '');
 insert into fw_menu values ('001005',      '001',    '日志管理',       'log',                    '0',      0, 'system', CURRENT_TIMESTAMP(3), '', '');
+insert into fw_menu values ('001006',      '001',    '会员管理',       'member',                    '0',      0, 'system', CURRENT_TIMESTAMP(3), '', '');
+insert into fw_menu values ('001007',      '001',    '预约管理',       'book',                    '0',      0, 'system', CURRENT_TIMESTAMP(3), '', '');
+insert into fw_menu values ('001008',      '001',    '项目管理',       'project',                    '0',      0, 'system', CURRENT_TIMESTAMP(3), '', '');
 
 -- ----------------------------
 -- records of fw_permission
@@ -36,6 +39,21 @@ insert into fw_permission values ('001003005', '001003',    '授权',           
                                                                                                                                             
 insert into fw_permission values ('001005001', '001005',    '列表',              '',               'log:list',                             '', '1', 0, 'system', CURRENT_TIMESTAMP(3), '', '');
 insert into fw_permission values ('001005002', '001005',    '导出',              '',               'log:export',                           '', '0', 0, 'system', CURRENT_TIMESTAMP(3), '', '');
+
+insert into fw_permission values ('001006001', '001006',    '列表',              '',               'mMember:list',                            '', '1', 0, 'system', CURRENT_TIMESTAMP(3), '', '');
+insert into fw_permission values ('001006002', '001006',    '新增',              '',               'mMember:create',                             '', '0', 0, 'system', CURRENT_TIMESTAMP(3), '', '');
+insert into fw_permission values ('001006003', '001006',    '编辑',              '',               'mMember:update',                          '', '0', 0, 'system', CURRENT_TIMESTAMP(3), '', '');
+insert into fw_permission values ('001006004', '001006',    '删除',              '',               'mMember:delete',                          '', '0', 0, 'system', CURRENT_TIMESTAMP(3), '', '');
+
+insert into fw_permission values ('001007001', '001007',    '列表',              '',               'mBook:list',                            '', '1', 0, 'system', CURRENT_TIMESTAMP(3), '', '');
+insert into fw_permission values ('001007002', '001007',    '新增',              '',               'mBook:create',                             '', '0', 0, 'system', CURRENT_TIMESTAMP(3), '', '');
+insert into fw_permission values ('001007003', '001007',    '编辑',              '',               'mBook:update',                          '', '0', 0, 'system', CURRENT_TIMESTAMP(3), '', '');
+insert into fw_permission values ('001007004', '001007',    '删除',              '',               'mBook:delete',                          '', '0', 0, 'system', CURRENT_TIMESTAMP(3), '', '');
+
+insert into fw_permission values ('001008001', '001008',    '列表',              '',               'mProject:list',                            '', '1', 0, 'system', CURRENT_TIMESTAMP(3), '', '');
+insert into fw_permission values ('001008002', '001008',    '新增',              '',               'mProject:create',                             '', '0', 0, 'system', CURRENT_TIMESTAMP(3), '', '');
+insert into fw_permission values ('001008003', '001008',    '编辑',              '',               'mProject:update',                          '', '0', 0, 'system', CURRENT_TIMESTAMP(3), '', '');
+insert into fw_permission values ('001008004', '001008',    '删除',              '',               'mProject:delete',                          '', '0', 0, 'system', CURRENT_TIMESTAMP(3), '', '');
 
 -- ----------------------------
 -- records of fw_role

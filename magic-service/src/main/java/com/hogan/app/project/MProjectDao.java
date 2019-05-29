@@ -3,6 +3,8 @@ package com.hogan.app.project;
 
 import com.hogan.common.base.BaseDao;
 
+import java.util.List;
+
 
 /**
  * @InterfaceName MProjectDao
@@ -11,6 +13,7 @@ import com.hogan.common.base.BaseDao;
  * @date 2019-05-24 17:16:09
  */
 public interface MProjectDao extends BaseDao<MProject, String>, MProjectDaoCustom {
-	
-	//此处定义模块jpa规范扩展接口(无需实现)
+    List<MProject> findByUsed(boolean used);
+
+    //此处定义模块jpa规范扩展接口(无需实现)
 }

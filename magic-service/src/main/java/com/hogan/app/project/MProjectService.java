@@ -33,6 +33,9 @@ public class MProjectService extends BaseServiceImpl<MProject, String> {
         return mProjectDao.findMProjectByCriteria(paramMap);
 //        return mProjectDao.findMProjectByJpql(paramMap);
 //        return mProjectDao.findMProjectBySql(paramMap);
-    } 
-     
+    }
+
+    public List<MProject> findByUsed(boolean used) {
+        return mProjectDao.findByUsed(used);
+    }
 }

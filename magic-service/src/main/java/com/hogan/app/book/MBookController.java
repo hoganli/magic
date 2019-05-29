@@ -1,6 +1,7 @@
 package com.hogan.app.book;
 
 
+import com.hogan.app.member.MMember;
 import com.hogan.framework.FrameworkConstants;
 import com.hogan.framework.user.User;
 import com.hogan.common.base.ReturnVO;
@@ -35,16 +36,15 @@ public class MBookController {
      * 添加MBook
      */
 	@RequestMapping(value = "/mBook", method = RequestMethod.POST)
-    @RequiresPermissions("mBook:create")
-	public ReturnVO addMBook(@RequestBody MBook mBook) {
+	public ReturnVO addMBook(@RequestBody MMember member) {
 		
 		ReturnVO vo = new ReturnVO();
 		
 		try {
-			User user = (User) SecurityUtils.getSubject().getSession().getAttribute("user");
-			mBook.setCreateDate(DateUtil.getCurrentTimeStamp().toString());
-            mBook.setCreateBy(user.getId());
-            mBookService.save(mBook);
+//			User user = (User) SecurityUtils.getSubject().getSession().getAttribute("user");
+//			mBook.setCreateDate(DateUtil.getCurrentTimeStamp().toString());
+//            mBook.setCreateBy(user.getId());
+            mBookService.createBook(member);
 		} catch (Exception e) {
 			log.error(e.getMessage(), e);
             vo.setSuccess(false);

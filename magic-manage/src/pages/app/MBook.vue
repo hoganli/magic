@@ -15,11 +15,11 @@
                      v-if="hasPerm('mBook:list')"
                      @click="onSubmit">查询</el-button>
         </el-form-item>
-        <el-form-item>
-          <el-button type="success" icon="el-icon-circle-plus-outline"
-                     v-if="hasPerm('mBook:create')"
-                     @click="showCreate">新建</el-button>
-        </el-form-item>
+        <!--<el-form-item>-->
+          <!--<el-button type="success" icon="el-icon-circle-plus-outline"-->
+                     <!--v-if="hasPerm('mBook:create')"-->
+                     <!--@click="showCreate">新建</el-button>-->
+        <!--</el-form-item>-->
       </el-form>
     </el-header>
 
@@ -33,12 +33,26 @@
                 size="small"
                 :height="globalTableHeight"
                 :maxHeight="globalTableHeight">
-        <el-table-column type="selection" width="50" align="center"></el-table-column>
+        <!--<el-table-column type="selection" width="50" align="center"></el-table-column>-->
         <el-table-column type="index" label="序号" fixed :index=this.gIndex+1 align="center"></el-table-column>
-        <el-table-column label="member_id" prop="memberId" align="left" header-align="center"></el-table-column>
-        <el-table-column label="project_id" prop="projectId" align="left" header-align="center"></el-table-column>
-        <el-table-column label="b_date" prop="bDate" align="left" header-align="center"></el-table-column>
-        <el-table-column label="b_time" prop="bTime" align="left" header-align="center"></el-table-column>
+        <el-table-column label="姓名" prop="member.userName" align="center" header-align="center"></el-table-column>
+        <el-table-column label="性别" prop="member.sexual" align="center" header-align="center">
+          <template slot-scope="scope">
+            <el-tag :type="scope.row.member.sexual === 1 ? 'success' : 'danger' ">
+              {{scope.row.member.sexual === 1 ? '先生' : '小姐'}}
+            </el-tag>
+          </template>
+        </el-table-column>
+        <el-table-column label="预约项目" prop="project.projectName" align="center" header-align="center"></el-table-column>
+        <el-table-column label="预约日期" prop="bDate" align="center" header-align="center"></el-table-column>
+        <el-table-column label="预约时间" prop="bTime" align="center" header-align="center"></el-table-column>
+        <el-table-column label="是否确认" prop="confirm" align="center" header-align="center">
+          <template slot-scope="scope">
+            <el-tag :type="scope.row.confirm === true ? 'success' : 'danger' ">
+              {{scope.row.confirm === true ? '已确认' : '未确认'}}
+            </el-tag>
+          </template>
+        </el-table-column>
         <el-table-column label="操作" width="120px" align="center" fixed="right">
           <template slot-scope="scope">
             <el-tooltip content="编辑预约" placement="top">
@@ -92,6 +106,9 @@
           </el-form-item>
           <el-form-item label="b_time" prop="bTime" :rules="[{ required: false, message: '请输入b_time'}]">
           <el-input v-model="mBookForm.bTime"></el-input>
+          </el-form-item>
+          <el-form-item label="是否确认" prop="confirm">
+            <el-switch v-model="mBookForm.confirm"></el-switch>
           </el-form-item>
         </el-form>
       </el-scrollbar>

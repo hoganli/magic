@@ -9,9 +9,9 @@ import User from '@/pages/framework/User'
 import Role from '@/pages/framework/Role'
 import Log from '@/pages/framework/Log'
 
-import SfProject from '@/pages/app/SfProject'
-import FileMonitor from '@/pages/app/FileMonitor'
-import EntityMonitor from '@/pages/app/EntityMonitor'
+import MBook from '@/pages/app/MBook'
+import MMember from '@/pages/app/MMember'
+import MProject from '@/pages/app/MProject'
 
 Vue.use(Router)
 
@@ -78,39 +78,47 @@ export const asyncRouterMap = [
     ]
   },
   {
-    path: '/project',
-    name: '项目配置',
+    path: '/member',
+    name: '会员',
     component: Home,
-    iconCls: 'el-icon-news',
+    iconCls: 'el-icon-s-custom',
     children: [
       {
-        path: '/project/list',
+        path: '/member/list',
         iconCls: 'fa fa-bank fa-fw',
-        name: '项目配置',
-        component: SfProject,
-        code: 'project'
+        name: '会员管理',
+        component: MMember,
+        code: 'member'
       }
     ]
   },
   {
-    path: '/monitor',
-    name: '项目监控',
+    path: '/book',
+    name: '预约',
     component: Home,
-    iconCls: 'el-icon-message',
+    iconCls: 'el-icon-s-order',
     children: [
       {
-        path: '/file/list',
-        iconCls: 'fa fa-envelope-open fa-fw',
-        name: '文件监控',
-        component: FileMonitor,
-        code: 'file'
-      },
+        path: '/book/list',
+        iconCls: 'fa fa-bank fa-fw',
+        name: '预约管理',
+        component: MBook,
+        code: 'book'
+      }
+    ]
+  },
+  {
+    path: '/project',
+    name: '项目',
+    component: Home,
+    iconCls: 'el-icon-s-management',
+    children: [
       {
-        path: '/entity/list',
+        path: '/project/list',
         iconCls: 'fa fa-envelope-open fa-fw',
-        name: '数据监控',
-        component: EntityMonitor,
-        code: 'entity'
+        name: '项目管理',
+        component: MProject,
+        code: 'project'
       }
     ]
   }
