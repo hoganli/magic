@@ -40,7 +40,7 @@ function apiAxios(method, url, params, success, failure) {
   if(params){
     paramString = JSON.stringify(params)
   }
-  var salt = '12345'
+  var salt = 'magic'
   var digest = crypto.SHA256(paramString + salt)
 
   // 真实请求

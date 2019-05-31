@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.CollectionUtils;
 
 import java.util.List;
 import java.util.Map;
@@ -47,22 +48,35 @@ public class MBookService extends BaseServiceImpl<MBook, String> {
     }
 
     private void fillDatas(List<MBook> content) throws Exception {
+        if(CollectionUtils.isEmpty(content)) {
+            return;
+        }
         for(MBook book : content) {
             book.setMember(mMemberDao.findById(book.getMemberId()).get());
             book.setProject(mProjectDao.findById(book.getProjectId()).get());
         }
     }
 
+    @Transactional
     public void createBook(MMember member) {
-        // 新建用户
-        member.setLevel(1);
-        member.setIntegral(0);
-        member = mMemberDao.save(member);
+        // 根据手机号查询用户
+        MMember memberInDb = mMemberDao.findByMobilePhone(member.getMobilePhone());
         // 新建预约
         MBook book = new MBook();
+        if(memberInDb == null) {
+            // 新建用户
+            member.setLevel(1);
+            member.setIntegral(0);
+            member = mMemberDao.save(member);
+            book.setMemberId(member.getId());
+        } else {
+            memberInDb.setNickName(member.getNickName());
+            book.setMemberId(memberInDb.getId());
+            mMemberDao.save(memberInDb);
+        }
+
         book.setbDate(member.getDate());
         book.setbTime(member.getTime());
-        book.setMemberId(member.getId());
         book.setProjectId(member.getProjectId());
         mBookDao.save(book);
     }

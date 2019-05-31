@@ -61,8 +61,8 @@
         },
         checked: true,
         loginUser: {
-          account: '',
-          password: ''
+          account: 'admin',
+          password: '1234.abcd'
         },
         // loginType: '0',
         isLogin: false,

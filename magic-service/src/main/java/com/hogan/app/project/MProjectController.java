@@ -23,7 +23,7 @@ import java.util.Map;
  * @date 2019-05-24 17:16:09
  */
 @RestController
-@RequestMapping(value = "/magic/api")
+@RequestMapping(value = "/magic")
 public class MProjectController {
 
 	private static Logger log = LoggerFactory.getLogger(MProjectController.class);
@@ -34,7 +34,7 @@ public class MProjectController {
     /**
      * 添加MProject
      */
-	@RequestMapping(value = "/mProject", method = RequestMethod.POST)
+	@RequestMapping(value = "/api/mProject", method = RequestMethod.POST)
     @RequiresPermissions("mProject:create")
 	public ReturnVO addMProject(@RequestBody MProject mProject) {
 		
@@ -57,7 +57,7 @@ public class MProjectController {
     /**
      * 更新MProject
      */
-	@RequestMapping(value = "/mProject", method = RequestMethod.PUT)
+	@RequestMapping(value = "/api/mProject", method = RequestMethod.PUT)
     @RequiresPermissions("mProject:update")
     public ReturnVO updateMProject(@RequestBody MProject mProject) {
 
@@ -80,7 +80,7 @@ public class MProjectController {
     /**
      * 删除MProject
      */
-   	@RequestMapping(value = "/mProject/{mProjectId}", method = RequestMethod.DELETE)
+   	@RequestMapping(value = "/api/mProject/{mProjectId}", method = RequestMethod.DELETE)
     @RequiresPermissions("mProject:delete")
     public ReturnVO deleteMProject(@PathVariable("mProjectId") String mProjectId) {
 
@@ -100,7 +100,7 @@ public class MProjectController {
     /**
      * 批量删除MProject
      */
-    @RequestMapping(value = "/mProjects/batch", method = RequestMethod.POST)
+    @RequestMapping(value = "/api/mProjects/batch", method = RequestMethod.POST)
     @RequiresPermissions("mProject:delete")
     public ReturnVO deleteMProjectList(@RequestBody List<String> mProjectIds) {
 
@@ -120,7 +120,7 @@ public class MProjectController {
 	/**
      * 查询MProject列表
      */
-    @RequestMapping(value = "/mProjects", method = RequestMethod.POST)
+    @RequestMapping(value = "/api/mProjects", method = RequestMethod.POST)
     @RequiresPermissions("mProject:list")
     public ReturnVO findMProjectList(@RequestBody Map<String, Object> paramMap) {
 
@@ -139,13 +139,30 @@ public class MProjectController {
         return vo;
     }
 
-    @RequestMapping(value = "/projects", method = RequestMethod.GET)
+    @RequestMapping(value = "/api/projects", method = RequestMethod.GET)
+    @RequiresPermissions("mProject:list")
     public ReturnVO findProjects() {
 
         ReturnVO vo = new ReturnVO();
 
         try {
-            vo.setData(mProjectService.findByUsed(true));
+            vo.setDataList(mProjectService.findByUsed(true));
+        } catch (Exception e) {
+            log.error(e.getMessage(), e);
+            vo.setSuccess(false);
+            vo.setMessage(e.getMessage());
+        }
+
+        return vo;
+    }
+
+    @RequestMapping(value = "/la/projectOptions", method = RequestMethod.GET)
+    public ReturnVO projectOptions() {
+
+        ReturnVO vo = new ReturnVO();
+
+        try {
+            vo.setDataList(mProjectService.findProjectOptions());
         } catch (Exception e) {
             log.error(e.getMessage(), e);
             vo.setSuccess(false);
@@ -158,7 +175,7 @@ public class MProjectController {
     /**
      * 查询单个MProject对象
      */
-    @RequestMapping(value = "/mProject/{mProjectId}", method = RequestMethod.GET)
+    @RequestMapping(value = "/api/mProject/{mProjectId}", method = RequestMethod.GET)
     @RequiresPermissions("mProject:list")
     public ReturnVO getMProject(@PathVariable("mProjectId") String mProjectId) {
 

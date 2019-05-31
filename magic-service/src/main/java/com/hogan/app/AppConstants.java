@@ -5,6 +5,9 @@ package com.hogan.app;
  */
 public class AppConstants {
 
+    public static final String APP_ID = "wxe5ee10f2c8a664a0";
+    public static final String SECRET = "13bfa59bce63a0b29287eb5571dab787";
+
     /*-----------------------------------------异常提示--------------------------------------------------------*/
     public static final String ERROR_MSG_NO_SUPPORTED_FILE_TYPE = "不支持的文件类型！";
     public static final String ERROR_MSG_NO_FILE_CONTENT = "没有文件内容可预览！";

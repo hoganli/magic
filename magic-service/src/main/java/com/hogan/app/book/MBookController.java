@@ -24,7 +24,7 @@ import java.util.Map;
  * @date 2019-05-24 17:04:56
  */
 @RestController
-@RequestMapping(value = "/magic/api")
+@RequestMapping(value = "/magic")
 public class MBookController {
 
 	private static Logger log = LoggerFactory.getLogger(MBookController.class);
@@ -35,7 +35,7 @@ public class MBookController {
     /**
      * 添加MBook
      */
-	@RequestMapping(value = "/mBook", method = RequestMethod.POST)
+	@RequestMapping(value = "/la/book", method = RequestMethod.POST)
 	public ReturnVO addMBook(@RequestBody MMember member) {
 		
 		ReturnVO vo = new ReturnVO();
@@ -57,7 +57,7 @@ public class MBookController {
     /**
      * 更新MBook
      */
-	@RequestMapping(value = "/mBook", method = RequestMethod.PUT)
+	@RequestMapping(value = "/api/mBook", method = RequestMethod.PUT)
     @RequiresPermissions("mBook:update")
     public ReturnVO updateMBook(@RequestBody MBook mBook) {
 
@@ -80,7 +80,7 @@ public class MBookController {
     /**
      * 删除MBook
      */
-   	@RequestMapping(value = "/mBook/{mBookId}", method = RequestMethod.DELETE)
+   	@RequestMapping(value = "/api/mBook/{mBookId}", method = RequestMethod.DELETE)
     @RequiresPermissions("mBook:delete")
     public ReturnVO deleteMBook(@PathVariable("mBookId") String mBookId) {
 
@@ -100,7 +100,7 @@ public class MBookController {
     /**
      * 批量删除MBook
      */
-    @RequestMapping(value = "/mBooks/batch", method = RequestMethod.POST)
+    @RequestMapping(value = "/api/mBooks/batch", method = RequestMethod.POST)
     @RequiresPermissions("mBook:delete")
     public ReturnVO deleteMBookList(@RequestBody List<String> mBookIds) {
 
@@ -120,7 +120,7 @@ public class MBookController {
 	/**
      * 查询MBook列表
      */
-    @RequestMapping(value = "/mBooks", method = RequestMethod.POST)
+    @RequestMapping(value = "/api/mBooks", method = RequestMethod.POST)
     @RequiresPermissions("mBook:list")
     public ReturnVO findMBookList(@RequestBody Map<String, Object> paramMap) {
 
@@ -142,7 +142,7 @@ public class MBookController {
     /**
      * 查询单个MBook对象
      */
-    @RequestMapping(value = "/mBook/{mBookId}", method = RequestMethod.GET)
+    @RequestMapping(value = "/api/mBook/{mBookId}", method = RequestMethod.GET)
     @RequiresPermissions("mBook:list")
     public ReturnVO getMBook(@PathVariable("mBookId") String mBookId) {
 

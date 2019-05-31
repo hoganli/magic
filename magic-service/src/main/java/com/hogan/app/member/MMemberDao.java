@@ -11,6 +11,7 @@ import com.hogan.common.base.BaseDao;
  * @date 2019-05-24 17:15:32
  */
 public interface MMemberDao extends BaseDao<MMember, String>, MMemberDaoCustom {
-	
-	//此处定义模块jpa规范扩展接口(无需实现)
+    MMember findByMobilePhone(String mobilePhone);
+
+    //此处定义模块jpa规范扩展接口(无需实现)
 }

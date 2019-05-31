@@ -33,6 +33,8 @@ public class MMemberService extends BaseServiceImpl<MMember, String> {
         return mMemberDao.findMMemberByCriteria(paramMap);
 //        return mMemberDao.findMMemberByJpql(paramMap);
 //        return mMemberDao.findMMemberBySql(paramMap);
-    } 
-     
+    }
+
+    public String getOpenId(String code) {
+    }
 }

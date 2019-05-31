@@ -35,17 +35,24 @@
                 :maxHeight="globalTableHeight">
         <el-table-column type="selection" width="50" align="center"></el-table-column>
         <el-table-column type="index" label="序号" fixed :index=this.gIndex+1 align="center"></el-table-column>
-        <el-table-column label="nick_name" prop="nickName" align="left" header-align="center"></el-table-column>
-        <el-table-column label="mobile_phone" prop="mobilePhone" align="left" header-align="center"></el-table-column>
-        <el-table-column label="sexual" prop="sexual" align="left" header-align="center"></el-table-column>
-        <el-table-column label="level" prop="level" align="left" header-align="center"></el-table-column>
-        <el-table-column label="integral" prop="integral" align="left" header-align="center"></el-table-column>
+        <el-table-column label="微信名" prop="nickName" align="center" header-align="center"></el-table-column>
+        <el-table-column label="姓名" prop="userName" align="center" header-align="center"></el-table-column>
+        <el-table-column label="性别" prop="sexual" align="center" header-align="center">
+          <template slot-scope="scope">
+            <el-tag :type="scope.row.sexual === 1 ? 'success' : 'danger' ">
+              {{scope.row.sexual === 1 ? '先生' : '小姐'}}
+            </el-tag>
+          </template>
+        </el-table-column>
+        <el-table-column label="手机号" prop="mobilePhone" align="center" header-align="center"></el-table-column>
+        <el-table-column label="会员等级" prop="level" align="center" header-align="center"></el-table-column>
+        <el-table-column label="积分" prop="integral" align="center" header-align="center"></el-table-column>
         <el-table-column label="操作" width="120px" align="center" fixed="right">
           <template slot-scope="scope">
-            <el-tooltip content="编辑member" placement="top">
+            <el-tooltip content="编辑" placement="top">
               <el-button circle type="primary" size="mini" icon="el-icon-edit" v-if="hasPerm('mMember:update')" @click="showUpdate(scope.row)"></el-button>
             </el-tooltip>
-            <el-tooltip content="删除member" placement="top">
+            <el-tooltip content="删除" placement="top">
               <el-button circle type="danger" size="mini" icon="el-icon-delete" v-if="hasPerm('mMember:delete')" @click="deleteMMember(scope.row)"></el-button>
             </el-tooltip>
           </template>
@@ -82,19 +89,19 @@
                  label-position="right"
                  style="text-align: left"
                  label-width="130px">
-          <el-form-item label="nick_name" prop="nickName" :rules="[{ required: false, message: '请输入nick_name'}]">
+          <el-form-item label="姓名手机号" prop="nickName" :rules="[{ required: false, message: '请输入nick_name'}]">
           <el-input v-model="mMemberForm.nickName"></el-input>
           </el-form-item>
-          <el-form-item label="mobile_phone" prop="mobilePhone" :rules="[{ required: false, message: '请输入mobile_phone'}]">
+          <el-form-item label="手机号码" prop="mobilePhone" :rules="[{ required: false, message: '请输入mobile_phone'}]">
           <el-input v-model="mMemberForm.mobilePhone"></el-input>
           </el-form-item>
-          <el-form-item label="sexual" prop="sexual" :rules="[{ required: false, message: '请输入sexual'}]">
-          <el-input v-model="mMemberForm.sexual"></el-input>
+          <el-form-item label="性别" prop="sexual" :rules="[{ required: false, message: '请输入sexual'}]">
+            <el-switch v-model="mMemberForm.sexual"></el-switch>
           </el-form-item>
-          <el-form-item label="level" prop="level" :rules="[{ required: false, message: '请输入level'}]">
+          <el-form-item label="会员等级" prop="level" :rules="[{ required: false, message: '请输入level'}]">
           <el-input v-model="mMemberForm.level"></el-input>
           </el-form-item>
-          <el-form-item label="integral" prop="integral" :rules="[{ required: false, message: '请输入integral'}]">
+          <el-form-item label="积分" prop="integral" :rules="[{ required: false, message: '请输入integral'}]">
           <el-input v-model="mMemberForm.integral"></el-input>
           </el-form-item>
         </el-form>

@@ -15,5 +15,7 @@ import java.util.List;
 public interface MProjectDao extends BaseDao<MProject, String>, MProjectDaoCustom {
     List<MProject> findByUsed(boolean used);
 
+    List<MProject> findByUsedOrderByTypeDesc(boolean used);
+
     //此处定义模块jpa规范扩展接口(无需实现)
 }

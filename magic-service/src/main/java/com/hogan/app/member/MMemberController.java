@@ -23,7 +23,7 @@ import java.util.Map;
  * @date 2019-05-24 17:15:32
  */
 @RestController
-@RequestMapping(value = "/magic/api")
+@RequestMapping(value = "/magic")
 public class MMemberController {
 
 	private static Logger log = LoggerFactory.getLogger(MMemberController.class);
@@ -34,7 +34,7 @@ public class MMemberController {
     /**
      * 添加MMember
      */
-	@RequestMapping(value = "/mMember", method = RequestMethod.POST)
+	@RequestMapping(value = "/api/mMember", method = RequestMethod.POST)
     @RequiresPermissions("mMember:create")
 	public ReturnVO addMMember(@RequestBody MMember mMember) {
 		
@@ -53,11 +53,32 @@ public class MMemberController {
 		
 		return vo;
 	}
+
+    /**
+     * 添加MMember
+     */
+    @RequestMapping(value = "/la/getOpenId", method = RequestMethod.POST)
+    @RequiresPermissions("mMember:create")
+    public ReturnVO getOpenId(@RequestParam String code) {
+
+        ReturnVO vo = new ReturnVO();
+
+        try {
+            String openId = mMemberService.getOpenId(code);
+            vo.setData(openId);
+        } catch (Exception e) {
+            log.error(e.getMessage(), e);
+            vo.setSuccess(false);
+            vo.setMessage(e.getMessage());
+        }
+
+        return vo;
+    }
 	
     /**
      * 更新MMember
      */
-	@RequestMapping(value = "/mMember", method = RequestMethod.PUT)
+	@RequestMapping(value = "/api/mMember", method = RequestMethod.PUT)
     @RequiresPermissions("mMember:update")
     public ReturnVO updateMMember(@RequestBody MMember mMember) {
 
@@ -80,7 +101,7 @@ public class MMemberController {
     /**
      * 删除MMember
      */
-   	@RequestMapping(value = "/mMember/{mMemberId}", method = RequestMethod.DELETE)
+   	@RequestMapping(value = "/api/mMember/{mMemberId}", method = RequestMethod.DELETE)
     @RequiresPermissions("mMember:delete")
     public ReturnVO deleteMMember(@PathVariable("mMemberId") String mMemberId) {
 
@@ -100,7 +121,7 @@ public class MMemberController {
     /**
      * 批量删除MMember
      */
-    @RequestMapping(value = "/mMembers/batch", method = RequestMethod.POST)
+    @RequestMapping(value = "/api/mMembers/batch", method = RequestMethod.POST)
     @RequiresPermissions("mMember:delete")
     public ReturnVO deleteMMemberList(@RequestBody List<String> mMemberIds) {
 
@@ -120,7 +141,7 @@ public class MMemberController {
 	/**
      * 查询MMember列表
      */
-    @RequestMapping(value = "/mMembers", method = RequestMethod.POST)
+    @RequestMapping(value = "/api/mMembers", method = RequestMethod.POST)
     @RequiresPermissions("mMember:list")
     public ReturnVO findMMemberList(@RequestBody Map<String, Object> paramMap) {
 
@@ -142,7 +163,7 @@ public class MMemberController {
     /**
      * 查询单个MMember对象
      */
-    @RequestMapping(value = "/mMember/{mMemberId}", method = RequestMethod.GET)
+    @RequestMapping(value = "/api/mMember/{mMemberId}", method = RequestMethod.GET)
     @RequiresPermissions("mMember:list")
     public ReturnVO getMMember(@PathVariable("mMemberId") String mMemberId) {
 

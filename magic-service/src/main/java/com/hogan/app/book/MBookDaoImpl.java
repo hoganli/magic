@@ -57,10 +57,13 @@ public class MBookDaoImpl implements MBookDaoCustom {
 
             // 获取动态查询条件
             String id = (String) paramMap.get("id");
-
+            String bDate = (String) paramMap.get("bDate");
             // 动态拼装查询条件
             if (StringUtils.isNotBlank(id)) {
                 predicates.add(cb.equal(root.get("id"), id));
+            }
+            if (StringUtils.isNotBlank(bDate)) {
+                predicates.add(cb.equal(root.get("bDate"), bDate));
             }
         }
 
@@ -71,7 +74,7 @@ public class MBookDaoImpl implements MBookDaoCustom {
         cq.where(predicates.toArray(new Predicate[predicates.size()]));
 
         // 设置排序
-        String sortProperty = "createDate";
+        String sortProperty = "bDate";
         cq.orderBy(cb.desc(root.get(sortProperty)));
 
         // 获取查询实例（查询list和count）

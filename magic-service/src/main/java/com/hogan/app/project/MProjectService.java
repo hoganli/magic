@@ -3,12 +3,12 @@ package com.hogan.app.project;
 
 import com.hogan.common.base.BaseServiceImpl;
 
-import org.apache.commons.lang3.NotImplementedException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -37,5 +37,17 @@ public class MProjectService extends BaseServiceImpl<MProject, String> {
 
     public List<MProject> findByUsed(boolean used) {
         return mProjectDao.findByUsed(used);
+    }
+
+    public List<ProjectOption> findProjectOptions() {
+        List<ProjectOption> options = new ArrayList<>();
+        List<MProject> projects = mProjectDao.findByUsedOrderByTypeDesc(true);
+        for(MProject project : projects) {
+            ProjectOption option = new ProjectOption();
+            option.setId(project.getId());
+            option.setName("(" + project.getType() + ")" + project.getProjectName() + " - " + project.getPeriod()+"分钟");
+            options.add(option);
+        }
+        return options;
     }
 }

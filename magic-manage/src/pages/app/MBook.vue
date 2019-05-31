@@ -6,9 +6,12 @@
                :model="mBook"
                class="demo-form-inline">
         <el-form-item>
-          <el-input v-model="mBook.id" placeholder="预约ID"
-                    style="width:200px;"
-                    clearable></el-input>
+          <el-date-picker
+            v-model="mBook.bDate"
+            type="date"
+            value-format="yyyy-MM-dd"
+            placeholder="选择日期">
+          </el-date-picker>
         </el-form-item>
         <el-form-item>
           <el-button type="primary" icon="el-icon-search"
@@ -43,6 +46,7 @@
             </el-tag>
           </template>
         </el-table-column>
+        <el-table-column label="预约类型" prop="project.type" align="center" header-align="center"></el-table-column>
         <el-table-column label="预约项目" prop="project.projectName" align="center" header-align="center"></el-table-column>
         <el-table-column label="预约日期" prop="bDate" align="center" header-align="center"></el-table-column>
         <el-table-column label="预约时间" prop="bTime" align="center" header-align="center"></el-table-column>
@@ -50,6 +54,13 @@
           <template slot-scope="scope">
             <el-tag :type="scope.row.confirm === true ? 'success' : 'danger' ">
               {{scope.row.confirm === true ? '已确认' : '未确认'}}
+            </el-tag>
+          </template>
+        </el-table-column>
+        <el-table-column label="是否完成" prop="finish" align="center" header-align="center">
+          <template slot-scope="scope">
+            <el-tag :type="scope.row.finish === true ? 'success' : 'danger' ">
+              {{scope.row.finish === true ? '已完成' : '未完成'}}
             </el-tag>
           </template>
         </el-table-column>
@@ -95,20 +106,44 @@
                  label-position="right"
                  style="text-align: left"
                  label-width="130px">
-          <el-form-item label="member_id" prop="memberId" :rules="[{ required: false, message: '请输入member_id'}]">
-          <el-input v-model="mBookForm.memberId"></el-input>
+          <!--<el-form-item label="member_id" prop="memberId" :rules="[{ required: false, message: '请输入member_id'}]">-->
+          <!--<el-input v-model="mBookForm.memberId"></el-input>-->
+          <!--</el-form-item>-->
+          <el-form-item label="预约项目" prop="projectId" :rules="[{ required: true, message: '请选择项目'}]">
+            <el-select v-model="mBookForm.projectId" placeholder="请选择">
+              <el-option
+                v-for="p in projects"
+                :key="p.id"
+                :label="p.projectName"
+                :value="p.id">
+              </el-option>
+            </el-select>
           </el-form-item>
-          <el-form-item label="project_id" prop="projectId" :rules="[{ required: false, message: '请输入project_id'}]">
-          <el-input v-model="mBookForm.projectId"></el-input>
+          <el-form-item label="预约日期" prop="bDate" :rules="[{ required: false, message: '请输入b_date'}]">
+            <el-date-picker
+              v-model="mBookForm.bDate"
+              type="date"
+              value-format="yyyy-MM-dd"
+              placeholder="选择日期">
+            </el-date-picker>
           </el-form-item>
-          <el-form-item label="b_date" prop="bDate" :rules="[{ required: false, message: '请输入b_date'}]">
-          <el-input v-model="mBookForm.bDate"></el-input>
-          </el-form-item>
-          <el-form-item label="b_time" prop="bTime" :rules="[{ required: false, message: '请输入b_time'}]">
-          <el-input v-model="mBookForm.bTime"></el-input>
+          <el-form-item label="预约时间" prop="bTime" :rules="[{ required: false, message: '请输入b_time'}]">
+            <el-time-select
+              v-model="mBookForm.bTime"
+              format="HH:mm"
+              :picker-options="{
+                start: '10:00',
+                step: '00:15',
+                end: '21:30'
+              }"
+              placeholder="选择时间">
+            </el-time-select>
           </el-form-item>
           <el-form-item label="是否确认" prop="confirm">
             <el-switch v-model="mBookForm.confirm"></el-switch>
+          </el-form-item>
+          <el-form-item label="是否完成" prop="finish">
+            <el-switch v-model="mBookForm.finish"></el-switch>
           </el-form-item>
         </el-form>
       </el-scrollbar>
@@ -135,9 +170,12 @@
 		    	projectId: '',
 		    	bDate: '',
 		    	bTime: '',
+          confirm: false,
+          finish: false
         },
 
         selItems: [],
+        projects: [],
         editDialogTitle: '',
         isLoading: false,
         isShowEditDialog: false,
@@ -152,6 +190,7 @@
     },
     mounted: function () {
       this.queryMBook()
+      this.getProjects()
       _mBookForm = Object.assign({}, this.mBookForm)
       window.onresize = () => {
         this.reSetGlobalHeightParams()
@@ -168,6 +207,20 @@
 
       handleSelectionChange(rowVal) {
         this.selItems = rowVal
+      },
+
+      getProjects() {
+        this.$ajax.get(
+          '/projects',
+          null,
+          vo => {
+            this.projects = vo.dataList
+            console.log(this.projects)
+          },
+          vo => {
+            this.$message.error('查询项目失败，请重试！')
+          }
+        );
       },
 
       queryMBook() {
